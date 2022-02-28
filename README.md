@@ -45,7 +45,6 @@
 
   ````
   This server is running on http://localhost:3000
-  
   ````
   
 <p>
