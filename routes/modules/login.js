@@ -5,15 +5,12 @@ const users = require("../../users");
 
 // route setting of login page
 router.post("/", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  let existEmail = [];
-  let existPassword = [];
-
+  const email = req.body.email
   // determined the input value exists or not
-  existEmail = users.filter((user) => user.email === email);
-  existPassword = users.filter((user) => user.password === password);
-  
+  const existUser = users.find((user) => user.email === email);
+  const existName = existUser.firstName
+  const existEmail = existUser.email
+  const existPassword = existUser.password
   // if existUser does't have the user then "render" error
   if (existEmail.length === 0) {
     res.render("error", {
@@ -30,7 +27,7 @@ router.post("/", (req, res) => {
   } else {
     // if existUser has the user then "render" login
     res.render("login", {
-      firstName: existUser[0].firstName,
+      firstName: existName,
     });
   }
 });
